@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tune Locker</title>
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js' type='text/javascript'></script>
+        <script data-main="scripts/main" src="scripts/require.js"></script>
+        <link rel="stylesheet" href="css/style.css"></script>
+        <script type='text/javascript'>
+        	require(['app'], function(app){
+        		var init = function(){
+        			var el = document.getElementById('keyboardContainer');
+        			app.launch();
+        		}
+
+        		if (document.ready){
+        			init();
+        		}
+        		else {
+        			window.onload = init();
+        		}
+
+        	});
+
+        </script>
+    </head>
+    <body>
+        <h1>Tune Locker</h1>
+        <h2>Use music to create a better, safer password</h2>
+        <div id='keyboardContainer'>
+        </div>
+    </body>
+</html>
