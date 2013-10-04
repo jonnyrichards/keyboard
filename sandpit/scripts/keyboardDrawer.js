@@ -55,7 +55,7 @@ define ( function () {
 	    },
 
 	    drawWhiteKeys: function(keyboardData){
-	    	console.log('drawing whites!');
+	    	console.log('..drawing whites!');
 	    	for (i = 0; i < keyboardData.numWhiteKeys; i++) {
 	    		var keyName = keyboardData.whiteKeyNames[i]
 	    		this.drawKey('white', keyName, i*keyboardData.whiteKeyWidth, 0, keyboardData.whiteKeyWidth, keyboardData.whiteKeyWidth*keyboardData.whiteKeyWidthToHeight, keyboardData.whiteKeyFillStyle, keyboardData.whiteKeyStrokeStyle, i, 0);
@@ -64,7 +64,7 @@ define ( function () {
 	    },
 	    
 	    drawBlackKeys: function(keyboardData){
-	    	console.log('drawing blacks!')
+	    	console.log('..drawing blacks!')
 	    	for (i = 0; i < keyboardData.numWhiteKeys; i++) { //we still reference whites when drawing blacks
 	    		if ( !keyboardData.blackKeyNames[i]){
 	    			continue;

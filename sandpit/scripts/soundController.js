@@ -54,20 +54,33 @@ define(['bufferLoader'], function(BufferLoader){
 
 		},
 
-		stopTone: function(oscillator){
-			console.log('stopping!');
-			oscillator.stop(0)
+		stopTone: function( keyCode, app ){
+
+			var key = app.data.keyCodes[keyCode];
+			var keyName = app.data.keys[key]['displayName'];
+			console.log('stopping ' + keyName + '!');
+			app.data.keys[key]['oscillator'].stop(0);
+			app.data.keys[key]['beingPlayed'] = false;
 		},
 
-		playTone: function(context){
+		playTone: function( context, keyCode, app ){
+			
 
-			console.log('playing!')
-			console.log(context);
+			var key = app.data.keyCodes[keyCode];
+
+			var keyName = app.data.keys[key]['displayName'];
+			console.log('playing ' + keyName + '!')
+
+			var frequency = app.data.keys[key]['frequency']
+
 			var oscillator = context.createOscillator();
-			oscillator.frequency.value = 110;
+			oscillator.frequency.value = frequency;
+			app.data.keys[key]['oscillator'] = oscillator;	
+			app.data.keys[key]['beingPlayed'] = true;	
+
 			oscillator.start(0,0,2);
 			oscillator.connect(context.destination);
-			return oscillator;
+
 		}
 		
 	}

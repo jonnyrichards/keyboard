@@ -4,7 +4,8 @@ requirejs.config({
 	paths: {
 		keyboardDrawer: 'keyboardDrawer',
 		boot: 'boot',
-		app: 'app'
+		app: 'app',
+		bufferLoader: 'lib/bufferLoader'
 		//Ractive: 'lib/Ractive'
 	}
 

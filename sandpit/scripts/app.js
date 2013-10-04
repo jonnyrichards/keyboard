@@ -1,15 +1,20 @@
-define( ['keyboardDrawer', 'keyboardController'], function( keyboardDrawer, keyboardController ){
+define( ['keyboardDrawer', 'keyboardController', 'soundController', 'data'], function( keyboardDrawer, keyboardController, soundController, data){
 
 	console.log('launching app!');
 
 	var app = {
 
 		launch: function(){
+			
+			this.data = data
 			keyboardDrawer.drawKeyboard();
-			keyboardController.control();
+			keyboardController.load(this);
+			//console.log(this);
+			
 		}
-
 	}
+
+	window.app = app;
 
 	return app;
 
