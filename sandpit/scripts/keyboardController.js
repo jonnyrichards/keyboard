@@ -1,39 +1,25 @@
-define (['soundController'], function ( soundController ){
+define (['soundController', 'keyFiller', 'keyboardDrawer', 'page'], function ( soundController, keyFiller, keyboardDrawer, page ){
 
 	return {		
 
+
 		load: function(app){
 
-			var soundContext = soundController.loadContext(app);
+			var that = this;
 
 			console.log('controlling keyboard!')
+			
+			// $("#footer").click(function() {
+			// 	page.transition();
+			    
+			// });
 
-			$('.key').hover( function () {
-				this.style.fill = '#bada55';
-			}, function(){
-				this.style.fill = this.getAttribute('colour') === 'white' ? '#ffffff' : '#000000';
-			});
+			//speeding up the page transition for debugging
 
-			$('body').keydown( function( event ){
-				console.log(event);
-				var keyCode = event.keyCode;
-				console.log('keydown event!')
-				var key = app.data.keyCodes[keyCode];
-				if (app.data.keys[key]['beingPlayed'] === true) {
-					return
-				}
-				else {
-					soundController.playTone( soundContext, keyCode, app );	
-				}
-				
-			});
-
-			$('body').keyup( function( event ){
-				var keyCode = event.keyCode;
-				soundController.stopTone(keyCode, app)
-			});
+			page.transition();
 
 		}
+
 	}
 
 });

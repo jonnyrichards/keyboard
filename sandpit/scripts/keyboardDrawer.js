@@ -1,4 +1,4 @@
-define ( function () {
+define (['soundController', 'keyFiller'], function (soundController, keyFiller) {
 
 	var keyboardDrawer = {
 
@@ -36,19 +36,24 @@ define ( function () {
 
 		},
 
-		drawKeyboard: function () {
+		drawKeyboard: function (containerElement, whiteKeyWidth) {
 			console.log('drawing keyboard!');
-			this.drawContainer();
+			this.data.element = containerElement;
+			this.data.keyboardElement = containerElement.replace('Container', '')
+			this.data.whiteKeyWidth = whiteKeyWidth;
+			//console.log(this.data);
+			this.drawContainer(this.data.keyboardElement);
 			var keyboardData = this.data;
 			this.drawWhiteKeys(keyboardData);
 			this.drawBlackKeys(keyboardData);
+			this.attachEvents();
 
 	    },
 
-	    drawContainer: function(){
-			var container = document.getElementById('keyboardContainer')
+	    drawContainer: function(keyboardElement){
+			var container = document.getElementById(this.data.element);
 			var keyboard = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-			keyboard.setAttribute('id', 'keyboard');
+			keyboard.setAttribute('id', keyboardElement);
 			keyboard.setAttribute('height', this.data.keyboardHeight());
 			keyboard.setAttribute('width', this.data.keyboardWidth());
 			container.appendChild(keyboard);
@@ -58,7 +63,7 @@ define ( function () {
 	    	console.log('..drawing whites!');
 	    	for (i = 0; i < keyboardData.numWhiteKeys; i++) {
 	    		var keyName = keyboardData.whiteKeyNames[i]
-	    		this.drawKey('white', keyName, i*keyboardData.whiteKeyWidth, 0, keyboardData.whiteKeyWidth, keyboardData.whiteKeyWidth*keyboardData.whiteKeyWidthToHeight, keyboardData.whiteKeyFillStyle, keyboardData.whiteKeyStrokeStyle, i, 0);
+	    		this.drawKey(keyboardData.keyboardElement, 'white', keyName, i*keyboardData.whiteKeyWidth, 0, keyboardData.whiteKeyWidth, keyboardData.whiteKeyWidth*keyboardData.whiteKeyWidthToHeight, keyboardData.whiteKeyFillStyle, keyboardData.whiteKeyStrokeStyle, i, 0);
 	    	}
 
 	    },
@@ -70,14 +75,14 @@ define ( function () {
 	    			continue;
 	    		}
 	    		var keyName = keyboardData.blackKeyNames[i]
-	    		this.drawKey('black', keyName, i*keyboardData.whiteKeyWidth + keyboardData.blackKeyOffset(), 0, keyboardData.blackKeyWidth(), keyboardData.blackKeyWidth()*keyboardData.blackKeyWidthToHeight, keyboardData.blackKeyFillStyle, keyboardData.blackKeyStrokeStyle, i);
+	    		this.drawKey(keyboardData.keyboardElement, 'black', keyName, i*keyboardData.whiteKeyWidth + keyboardData.blackKeyOffset(), 0, keyboardData.blackKeyWidth(), keyboardData.blackKeyWidth()*keyboardData.blackKeyWidthToHeight, keyboardData.blackKeyFillStyle, keyboardData.blackKeyStrokeStyle, i);
 	    	}
 
 	    },
 
-	    drawKey: function(colour, name, x, y, width, height, fillStyle, strokeStyle, index){
+	    drawKey: function(element, colour, name, x, y, width, height, fillStyle, strokeStyle, index){
 	    	var key = document.createElementNS('http://www.w3.org/2000/svg', "rect")
-	    	var keyboard = document.getElementById('keyboard');
+	    	var keyboard = document.getElementById(element);
 	    	keyboard.appendChild(key);
 	    	key.setAttribute('id', name);
 	    	key.setAttribute('class', 'key');
@@ -88,6 +93,39 @@ define ( function () {
 	    	key.setAttribute('width', width);
 	    	key.style.stroke = strokeStyle;
 	    	key.style.fill = fillStyle;   	
+	    },
+
+	    attachEvents: function(){
+
+	    	$('.key').hover( function () {
+				this.style.fill = '#a0c3ff';
+			}, function(){
+				this.style.fill = this.getAttribute('colour') === 'white' ? '#ffffff' : '#000000';
+			});
+
+			var soundContext = soundController.loadContext(app);
+
+			$('body').keydown( function( event ){
+
+				var keyCode = event.keyCode;
+				console.log('keydown event!')
+				var key = app.data.keyCodes[keyCode];
+				if (app.data.keys[key]['beingPlayed'] === true) {
+					return
+				}
+				else {
+					soundController.playTone( soundContext, keyCode, app );
+					keyFiller.fill(keyCode, app);
+				}				
+			});
+
+			$('body').keyup( function( event ){
+				var keyCode = event.keyCode;
+				soundController.stopTone(keyCode, app)
+				keyFiller.unfill(keyCode, app);
+			});
+
+
 	    }
 
 	 }

@@ -6,7 +6,7 @@ define(['bufferLoader'], function(BufferLoader){
 
 		loadContext: function(app){
 
-			console.log('loading context');
+			//console.log('loading context');
 			window.AudioContext = window.AudioContext || window.webkitAudioContext;
 			context = new AudioContext();
 			return context;

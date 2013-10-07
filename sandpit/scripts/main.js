@@ -5,7 +5,10 @@ requirejs.config({
 		keyboardDrawer: 'keyboardDrawer',
 		boot: 'boot',
 		app: 'app',
-		bufferLoader: 'lib/bufferLoader'
+		bufferLoader: 'lib/bufferLoader',
+		keyFiller: 'keyFiller',
+		page: 'page',
+		typewriterDrawer: 'typewriterDrawer'
 		//Ractive: 'lib/Ractive'
 	}
 
