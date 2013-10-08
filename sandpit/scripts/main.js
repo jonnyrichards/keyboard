@@ -7,7 +7,7 @@ requirejs.config({
 		app: 'app',
 		bufferLoader: 'lib/bufferLoader',
 		keyFiller: 'keyFiller',
-		page: 'page',
+		transitionController: 'transitionController',
 		typewriterDrawer: 'typewriterDrawer'
 		//Ractive: 'lib/Ractive'
 	}

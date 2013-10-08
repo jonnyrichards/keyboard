@@ -9,7 +9,7 @@ define( function ( ) {
 			numRows: 6,
 			standardKeyWidth: 60,
 			standardKeyHeight: 55,
-			inBetweenKeysWidth: 20,
+			inBetweenKeysWidth: 18,
 			inBetweenRowsHeight: 14
 
 		},
@@ -32,7 +32,36 @@ define( function ( ) {
 
 	 				specialKeyMultiplierWidth: 1.65 
 
-	 			}
+	 			},
+	 			3: {
+	 				keyName: '2',
+	 				keyCode: '50'
+	 			},
+	 			4: {
+	 				keyName: '3',
+	 				keyCode: '51'
+	 			},
+	 			6: {
+	 				keyName: '5',
+	 				keyCode: '53'
+	 			},
+	 			7: {
+	 				keyName: '6',
+	 				keyCode: '54'
+	 			},
+	 			8: {
+	 				keyName: '7',
+	 				keyCode: '55'
+	 			},
+	 			10: {
+	 				keyName: '9',
+	 				keyCode: '57'
+	 			},
+	 			11: {
+	 				keyName: '0',
+	 				keyCode: '48'
+	 			},
+
 
 	 		},
 	 		3: {
@@ -44,8 +73,47 @@ define( function ( ) {
 
 	 				specialKeyMultiplierWidth: 1.65 
 
+	 			},
+	 			2: {
+	 				keyName: 'Q',
+	 				keyCode: '81'
+	 			},
+	 			3: {
+	 				keyName: 'W',
+	 				keyCode: '87'
+	 			},
+	 			4: {
+	 				keyName: 'E',
+	 				keyCode: '69'
+	 			},
+	 			5: {
+	 				keyName: 'R',
+	 				keyCode: '82'
+	 			},
+	 			6: {
+	 				keyName: 'T',
+	 				keyCode: '84'
+	 			},
+	 			7: {
+	 				keyName: 'Y',
+	 				keyCode: '89'
+	 			},
+	 			8: {
+	 				keyName: 'U',
+	 				keyCode: '85'
+	 			},
+	 			9: {
+	 				keyName: 'I',
+	 				keyCode: '73'
+	 			},
+	 			10: {
+	 				keyName: 'O',
+	 				keyCode: '79'
+	 			},
+	 			11: {
+	 				keyName: 'P',
+	 				keyCode: '80'
 	 			}
-
 	 		},
 
 	 		4: {
@@ -91,7 +159,7 @@ define( function ( ) {
 	 			numberOfKeys: 10,
 	 			5: {
 
-	 				specialKeyMultiplierWidth: 6.75
+	 				specialKeyMultiplierWidth: 6.6
 
 	 			},
 	 			

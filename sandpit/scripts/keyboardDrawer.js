@@ -46,7 +46,7 @@ define (['soundController', 'keyFiller'], function (soundController, keyFiller) 
 			var keyboardData = this.data;
 			this.drawWhiteKeys(keyboardData);
 			this.drawBlackKeys(keyboardData);
-			this.attachEvents();
+			//this.attachEvents();
 
 	    },
 
@@ -93,39 +93,6 @@ define (['soundController', 'keyFiller'], function (soundController, keyFiller) 
 	    	key.setAttribute('width', width);
 	    	key.style.stroke = strokeStyle;
 	    	key.style.fill = fillStyle;   	
-	    },
-
-	    attachEvents: function(){
-
-	    	$('.key').hover( function () {
-				this.style.fill = '#a0c3ff';
-			}, function(){
-				this.style.fill = this.getAttribute('colour') === 'white' ? '#ffffff' : '#000000';
-			});
-
-			var soundContext = soundController.loadContext(app);
-
-			$('body').keydown( function( event ){
-
-				var keyCode = event.keyCode;
-				console.log('keydown event!')
-				var key = app.data.keyCodes[keyCode];
-				if (app.data.keys[key]['beingPlayed'] === true) {
-					return
-				}
-				else {
-					soundController.playTone( soundContext, keyCode, app );
-					keyFiller.fill(keyCode, app);
-				}				
-			});
-
-			$('body').keyup( function( event ){
-				var keyCode = event.keyCode;
-				soundController.stopTone(keyCode, app)
-				keyFiller.unfill(keyCode, app);
-			});
-
-
 	    }
 
 	 }

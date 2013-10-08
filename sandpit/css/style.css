@@ -46,8 +46,25 @@ h2 {
 	fill: #a0c3ff;
 }
 
-#keyboardContainer {
+#keyboardContainer  {
 	text-align: center;
+}
+
+#typewriterContainer {
+	margin: auto;
+}
+
+.typewriterKey {
+
+    -webkit-transition: opacity 0.3s;
+    font-family: 'Open Sans';
+    font-weight: 200;
+    
+}
+
+.typewriterKeyPlaying {
+	background-color: '#4285f4';
+	border: '1px solid #4285f4';
 }
 
 #footer {

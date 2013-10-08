@@ -1,4 +1,4 @@
-define( ['keyboardDrawer', 'keyboardController', 'soundController', 'keyboardData'], function( keyboardDrawer, keyboardController, soundController, keyboardData){
+define( ['keyboardController', 'keyboardData', 'keyboardDrawer'], function( keyboardController, keyboardData, keyboardDrawer){
 
 	console.log('launching app!');
 
@@ -8,6 +8,9 @@ define( ['keyboardDrawer', 'keyboardController', 'soundController', 'keyboardDat
 
 			this.data = keyboardData;
 			keyboardDrawer.drawKeyboard('keyboardContainer', 80);
+			keyboardController.attachEvents(this);
+
+			//don't really like the way this is doing this - should page transition stuff live elsewhere?
 			keyboardController.load(this);
 			
 		}
