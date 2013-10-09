@@ -1,6 +1,6 @@
 define ( function () {
 	return	{
-
+		
 		keyCodes: {
 			'81': 'c',
 			'87': 'd',

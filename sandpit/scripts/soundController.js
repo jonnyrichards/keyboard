@@ -44,19 +44,38 @@ define(['bufferLoader'], function(BufferLoader){
 		},
 
 		//slightly different from playTone, this one, because it will take a duration parameter and call the whole start and stop itself. it's more for playBack run by JS, rather than the user on the keyboard
-		playNote: function ( context, app, keyCode, duration ) {
-
-			var key = app.data.keyCodes[keyCode];
-			var keyName = app.data.keys[key]['displayName'];
-			var frequency = app.data.keys[key]['frequency']
-
-			var oscillator = context.createOscillator();
-			oscillator.frequency.value = frequency;
+		playDemoNote: function ( context, app, demoNote ) {
 			
-			oscillator.start(0,0,2);
-			oscillator.stop(duration);
-			oscillator.connect(context.destination);
+			//extract 'key' info
+			var key = app.data.keyCodes[demoNote.keyCode];
+			var keyName = app.data.keys[key]['displayName'];
 
+			//set up our oscillator properties
+			var duration = demoNote.duration;			
+			var now = context.currentTime, osc = null;
+			var frequency = app.data.keys[key]['frequency']
+		    var startTime = now + demoNote['start']
+
+		    //create our oscillator
+		    osc = context.createOscillator();
+		    osc.frequency.value = frequency;
+
+		    //connect with stop start info
+		    osc.connect(context.destination);
+		    osc.start(startTime);
+		    osc.stop(startTime + duration);
+
+		    //colour our typewriter keys on and off in sync with the demo
+		    var typewriterKey = document.getElementById('typewriterKey-' + demoNote.keyCode);
+		    
+		    setTimeout(function(){
+		    	$(typewriterKey).css('background-color', '#4285f4');
+		    }, startTime*1000);
+
+		    setTimeout(function(){
+		    	$(typewriterKey).css('background-color', '#a0c3ff');
+		    }, startTime*1000 + duration*1000);
+			
 		}
 
 		// playSound: function(context, url){

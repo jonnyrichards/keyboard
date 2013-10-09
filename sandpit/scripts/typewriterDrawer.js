@@ -17,6 +17,7 @@ define(['typewriterKeyData', 'soundController'], function ( typewriterData, soun
 		    
 		    var promise = this.fadeUpTypewriter();
 		    promise.done(this.runDemo);
+
 		},
 
 		drawContainer: function(){
@@ -144,11 +145,64 @@ define(['typewriterKeyData', 'soundController'], function ( typewriterData, soun
 
 		runDemo: function ( ) {
 
-			console.log('it is time to run our demo');
+			var demoNotes = [
+
+				{
+					keyCode: '73',
+					start: 0,
+					duration: 0.3
+				},
+				{
+					keyCode: '85',
+					start: 0.5,
+					duration: 0.3
+				},
+				{
+					keyCode: '73',
+					start: 1,
+					duration: 0.3
+				},
+				{
+					keyCode: '85',
+					start: 1.5,
+					duration: 0.3
+				},
+				{
+					keyCode: '73',
+					start: 2,
+					duration: 0.3
+				},
+				{
+					keyCode: '84',
+					start: 2.5,
+					duration: 0.3
+				},
+				{
+					keyCode: '55',
+					start: 3,
+					duration: 0.3
+				},
+				{
+					keyCode: '54',
+					start: 3.5,
+					duration: 0.3
+				},
+				{
+					keyCode: '82',
+					start: 4,
+					duration: 1
+				},
+
+			];
+
 			var context = app.context;
 
-			soundController.playNote(app.context, app, '69', 1);
-			soundController.playNote(app.context, app, '85', 1);
+
+			for(i = 0; i < demoNotes.length; i++) {
+
+				soundController.playDemoNote(context, app, demoNotes[i]);
+
+			} 	
 			
 		}
 
