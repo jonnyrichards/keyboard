@@ -39,6 +39,11 @@ define (['soundController', 'keyFiller', 'tuneLock', 'typewriterDrawer', 'keyboa
 					tuneLock.clear();
 				}
 
+				var prompt = document.getElementById('prompt');
+				if ( prompt ) {
+					$(prompt).remove();
+				}
+
 				//return if this isn't a magic key
 				if (app.data.keyCodes[keyCode] === undefined) {
 					return;
@@ -164,6 +169,12 @@ define (['soundController', 'keyFiller', 'tuneLock', 'typewriterDrawer', 'keyboa
 
 			keyboardDrawer.drawKeyboard(keyboardContainer, 80);
 			keyboardContainer.style.opacity = '0';
+
+			var tuneLock = document.getElementById('tuneLock')
+			var prompt = document.createElement('span');
+			prompt.id= 'prompt'
+			prompt.innerText = "Play a password";
+			tuneLock.appendChild(prompt);
 			
 			document.body.appendChild(keyboardContainer);
 

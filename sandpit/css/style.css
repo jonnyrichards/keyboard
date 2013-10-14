@@ -101,6 +101,12 @@ h2 {
 	padding-top: 8px;
 }
 
+#prompt {
+	font-style: italic;
+	color: #e6e6e6;
+	font-size: 50px;
+}
+
 #tuneLockClearButton {
 
 	border-radius: 3px;

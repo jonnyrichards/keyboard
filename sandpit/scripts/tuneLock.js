@@ -33,7 +33,7 @@ define([], function(){
 			tuneLock.style.height = '100%';
 			//tuneLock.style.margin = '20%';
 
-			tuneLock.style.width = '400px';
+			tuneLock.style.width = '500px';
 			//tuneLock.style.border = '1px solid #e6e6e6';
 			//calculate margin on tunelock div
 			var tuneLockLeftMargin = (screen.width - tuneLock.style.width.replace('px', ''))/2
@@ -65,7 +65,7 @@ define([], function(){
 			//tuneLockClearButton.style.marginTop = '30%';
 			//tuneLockClearButton.style.padding = '25px';
 			tuneLockClearButton.style.boxSizing = 'border-box';
-			tuneLockClearButton.innerText = 'Clear';
+			tuneLockClearButton.innerText = "Clear";
 			tuneLockClearButton.style.paddingTop = '8px';
 			tuneLockClearButtonContainer.appendChild(tuneLockClearButton);
 
