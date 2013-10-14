@@ -4,7 +4,7 @@ define(['typewriterKeyData', 'soundController'], function ( typewriterData, soun
 
 		data: typewriterData,
 
-		draw: function(){
+		draw: function( deferred ){
 
 			console.log('drawing typewriter!')
 
@@ -12,16 +12,26 @@ define(['typewriterKeyData', 'soundController'], function ( typewriterData, soun
 
 			for (var i = 1; i < this.data.typewriter.numRows+1; i++){
 				this.drawRow(i, this.data.rows[i]);
-				console.log('drawing row ' + i)			
 			}
 		    
-		    var promise = this.fadeUpTypewriter();
-		    promise.done(this.runDemo);
+		    var typewriterFadeUp = this.fadeUpTypewriter();
+		    
+		    var that = this;
 
+		    typewriterFadeUp.done( function( ){
+
+		    	setTimeout( function( ){
+		    		that.runDemo ( deferred );	
+		    	}, 400);
+		    	
+			});
 		},
 
-		drawContainer: function(){
+		drawContainer: function( ){
 
+			var container = document.createElement('div')
+			container.id = 'typewriterContainer';
+			document.body.appendChild(container);
 			//this is a quite bastard function to gauge the typewriter width based on row 1, which has the most standard keyset - all equal width; equally for the height we just take numRows and multiply it by standard row height
 
 			var typewriterWidth = this.data.rows[1]['numberOfKeys']*this.data.typewriter.standardKeyWidth*this.data.rows[1].standardKeyWidthMultiplier + this.data.rows[1]['numberOfKeys']*this.data.typewriter.inBetweenKeysWidth;
@@ -32,10 +42,7 @@ define(['typewriterKeyData', 'soundController'], function ( typewriterData, soun
 
 			$('#typewriterContainer').css('width', typewriterWidth);
 			$('#typewriterContainer').css('height', typewriterHeight);
-			//$('#typewriterContainer').css('backgroundColor', '#f2f2f2')
-			$('#typewriterContainer').css('paddingTop', this.data.typewriter.inBetweenRowsHeight)
-			//$('#typeWriterContainer').css('width', )
-
+			
 		},
 
 		drawRow: function ( index, rowData ){
@@ -76,7 +83,6 @@ define(['typewriterKeyData', 'soundController'], function ( typewriterData, soun
 				else if ( rowData[keyIndex].keyName != undefined ) {
 
 					key.style.width = this.data.typewriter.standardKeyWidth*rowData.standardKeyWidthMultiplier -4 + 'px';
-					console.log('this is key' + rowData[keyIndex].keyName);
 					styledKey = this.styleKey(key, true, rowData[keyIndex].keyName, rowData[keyIndex].keyCode)
 
 				}
@@ -126,8 +132,6 @@ define(['typewriterKeyData', 'soundController'], function ( typewriterData, soun
 
 			var deferred = $.Deferred()
 
-			console.log('fading up!');
-			
 			setTimeout( function(){
 
 				var keys = document.getElementsByClassName('typewriterKey');
@@ -137,13 +141,19 @@ define(['typewriterKeyData', 'soundController'], function ( typewriterData, soun
 
 			}, 0)
 
-			deferred.resolve();
+			//wait before we proceed with demo
+			setTimeout( function(){
+				deferred.resolve();
+
+			}, 1500)
 
 			return deferred.promise();
 
 		},
 
-		runDemo: function ( ) {
+		runDemo: function ( deferred ) {
+
+			console.log('running demo!');
 
 			var demoNotes = [
 
@@ -200,8 +210,8 @@ define(['typewriterKeyData', 'soundController'], function ( typewriterData, soun
 
 			for(i = 0; i < demoNotes.length; i++) {
 
-				soundController.playDemoNote(context, app, demoNotes[i]);
-
+				soundController.playDemoNote(context, app, demoNotes[i], i, demoNotes.length,deferred);
+				
 			} 	
 			
 		}

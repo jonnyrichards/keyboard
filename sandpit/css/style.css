@@ -1,7 +1,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
+    /*height: 100%;*/
 }
 
 .screen {
@@ -12,7 +12,7 @@ html, body {
 
 }
 
-#header, #footer, #keyboard {
+#underline, #footer, #header, #typewriterContainer, #keyboard, #testDiv, #tuneLockContainer, #keyboardContainer { 
 	-moz-transition: all 1s; 
 	-webkit-transition: all 1s;  
 	-ms-transition: all 1s;  
@@ -20,8 +20,12 @@ html, body {
 	transition: all 1s;
 }
 
-#header {
+#underline {
 	margin-bottom: 50px;
+}
+
+#header {
+	margin-bottom: 30px;
 }
 
 h1, h2 {
@@ -56,7 +60,7 @@ h2 {
 
 .typewriterKey {
 
-    -webkit-transition: opacity 0.3s;
+    -webkit-transition: opacity 1s;
     font-family: 'Open Sans';
     font-weight: 200;
     
@@ -76,9 +80,34 @@ h2 {
 	padding: 10px;
 	width: 120px;
 	background-color: #4285f4;
-	color: #f2f2f2;
+	color: #ffffff;
 	margin: auto;
-	margin-top: 25px;
+	margin-top: 35px;
+	border-radius: 3px;
+}
+
+/*#tuneLockContainer {
+
+	margin-bottom: 50px;
+
+}*/
+
+#tuneLock {
+
+	font-family: 'Open Sans';
+	font-weight: 200;
+	font-size: 60px;
+	color: #575757;
+	padding-top: 8px;
+}
+
+#tuneLockClearButton {
+
+	border-radius: 3px;
+	font-family: 'Open Sans';
+	font-weight: 200;
+	color: white;
+	background-color: #a0c3ff;
 }
 
 

@@ -1,4 +1,4 @@
-define( ['keyboardController', 'keyboardData', 'keyboardDrawer'], function( keyboardController, keyboardData, keyboardDrawer){
+define( ['controller', 'data', 'keyboardDrawer', 'pubSub', 'extender'], function( controller, data, keyboardDrawer, pubSub, extender){
 
 	console.log('launching app!');
 
@@ -6,13 +6,21 @@ define( ['keyboardController', 'keyboardData', 'keyboardDrawer'], function( keyb
 
 		launch: function(){
 
-			this.data = keyboardData;
-			keyboardDrawer.drawKeyboard('keyboardContainer', 80);
-			keyboardController.attachEvents(this);
+			extender.extend(app, pubSub);
+
+			app.data = data;
+
+			app.controller = controller;
+			controller.initiate(app);
+
+			app.keyboardDrawer = keyboardDrawer;
+			
+			var keyboardContainer = document.createElement('div');
+			keyboardContainer.id = 'keyboardContainer';
+			keyboardDrawer.drawKeyboard(keyboardContainer, 80);
 
 			//don't really like the way this is doing this - should page transition stuff live elsewhere?
-			keyboardController.load(this);
-			
+
 		}
 	}
 

@@ -2,14 +2,17 @@ requirejs.config({
 
 	baseUrl: 'scripts',
 	paths: {
-		keyboardDrawer: 'keyboardDrawer',
+		keyboardDrawer: 'keyboard/keyboardDrawer',
+		data: 'data',
+		controller: 'controller',
+		keyFiller: 'keyboard/keyFiller',
 		boot: 'boot',
 		app: 'app',
+		pubSub: 'lib/pubSub',
+		extender: 'lib/extender',
 		bufferLoader: 'lib/bufferLoader',
-		keyFiller: 'keyFiller',
-		transitionController: 'transitionController',
-		typewriterDrawer: 'typewriterDrawer'
-		//Ractive: 'lib/Ractive'
+		typewriterDrawer: 'typewriter/typewriterDrawer',
+		typewriterKeyData: 'typewriter/typewriterKeyData',
 	}
 
 });

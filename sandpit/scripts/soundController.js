@@ -44,8 +44,9 @@ define(['bufferLoader'], function(BufferLoader){
 		},
 
 		//slightly different from playTone, this one, because it will take a duration parameter and call the whole start and stop itself. it's more for playBack run by JS, rather than the user on the keyboard
-		playDemoNote: function ( context, app, demoNote ) {
+		playDemoNote: function ( context, app, demoNote, i, numDemoNotes, deferred ) {
 			
+
 			//extract 'key' info
 			var key = app.data.keyCodes[demoNote.keyCode];
 			var keyName = app.data.keys[key]['displayName'];
@@ -70,10 +71,17 @@ define(['bufferLoader'], function(BufferLoader){
 		    
 		    setTimeout(function(){
 		    	$(typewriterKey).css('background-color', '#4285f4');
+		    	    //write our notes to the screen
+		    	    var character = String.fromCharCode(demoNote.keyCode).toLowerCase();
+		    	    console.log('playing demo note')
+		    		$('#tuneLock').append(character);
 		    }, startTime*1000);
 
 		    setTimeout(function(){
 		    	$(typewriterKey).css('background-color', '#a0c3ff');
+		    	if (i == numDemoNotes-1) {
+		    		deferred.resolve();
+		    	}
 		    }, startTime*1000 + duration*1000);
 			
 		}

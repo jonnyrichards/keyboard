@@ -1,0 +1,46 @@
+<html>
+<head>
+	<script type='text/javascript'>
+
+		
+
+		var model = Object.create(pubSub);
+
+		model.view1Changed = function( ){
+			console.log('view 1 change is complete and model is informed');
+
+		}
+
+		console.log(model);
+
+		//view 1
+		var view1 = Object.create(pubSub);
+		view1.publisher = model;
+
+		view1.changeView1 = function(){
+			console.log('view 1 is updating itself');
+			this.publisher.on('view1Changed');
+		}
+		model.subscribers.push(view1)
+
+		//view 2
+		var view2 = Object.create(pubSub);
+		view2.publisher = model;
+		view2.changeView2 = function(){
+			console.log('view 2 is updating itself');
+			this.published.on('view2Changed');
+		}
+		model.subscribers.push(view2)
+
+		//view3
+		var view3 = Object.create(pubSub);
+		view3.changeView3 = function(){
+			console.log('view 3 is updating itself');
+		}
+		model.subscribers.push(view3)
+
+
+	</script>
+
+</head>
+</html>
