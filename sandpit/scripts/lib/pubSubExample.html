@@ -2,8 +2,6 @@
 <head>
 	<script type='text/javascript'>
 
-		
-
 		var model = Object.create(pubSub);
 
 		model.view1Changed = function( ){
@@ -28,7 +26,7 @@
 		view2.publisher = model;
 		view2.changeView2 = function(){
 			console.log('view 2 is updating itself');
-			this.published.on('view2Changed');
+			this.publisher.on('view2Changed');
 		}
 		model.subscribers.push(view2)
 

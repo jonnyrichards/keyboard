@@ -172,8 +172,8 @@ define (['soundController', 'keyFiller', 'tuneLock', 'typewriterDrawer', 'keyboa
 
 			var tuneLock = document.getElementById('tuneLock')
 			var prompt = document.createElement('span');
-			prompt.id= 'prompt'
-			prompt.innerText = "Play a password";
+			prompt.id= 'prompt';
+			prompt.innerText = "Type to play";
 			tuneLock.appendChild(prompt);
 			
 			document.body.appendChild(keyboardContainer);

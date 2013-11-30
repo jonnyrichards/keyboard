@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tune Locker</title>
+        <script src='scripts/lib/jquery.min.js' type='text/javascript'></script>
+        <script data-main="scripts/main" src="scripts/require.js"></script>
+        <link rel="stylesheet" href="css/style.css"></script>
+        <script type='text/javascript'>
+        	
+            var context;
+            if (typeof AudioContext !== "undefined") {
+                context = new AudioContext();
+            } else if (typeof webkitAudioContext !== "undefined") {
+                context = new webkitAudioContext();
+            } else {
+                throw new Error('AudioContext not supported. :(');
+            }
+
+            function createSoundSource(){
+                console.log('creating sound source');
+            }
+
+
+
+            // var request = new XMLHttpRequest();
+            // request.open("GET", "http://tts-api.com/tts.mp3?q=I%20can%20hear%20you", true);
+            // request.responseType = "arraybuffer";
+             
+            // Our asynchronous callback
+            // request.onload = function() {
+            //     var audioData = request.response;
+            //     createSoundSource(audioData);
+            // };
+            // request.send();
+
+
+
+
+
+        </script>
+    </head>
+    <body>
+        <div id='test'>Test</div>
+        <audio id='myAudio' controls src='https://translate.google.com/translate_tts?tl=en&q=i+think+this+is+charisma'></audio>
+    </body>
+</html>
